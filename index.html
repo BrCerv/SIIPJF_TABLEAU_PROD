@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Presentación Automática de Tableau</title>
+    <script src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        #tableauViz {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tableauViz"></div>
+
+    <script>
+        const dashboards = [
+
+        "https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MinistrasSCJN?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MinistrosSCJN?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTDJ?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradosTDJ?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTEPJF-SS?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradosTEPJF-SS?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTEPJF-SR?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradosTEPJF-SR?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasTCCA?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasJD?:origin=card_share_link&:embed=n"
+        ];
+
+        const durationSeconds = 25; // Cambiar cada 15 segundos
+        let currentDashboard = 0;
+
+        const containerDiv = document.getElementById("tableauViz");
+        let viz;
+
+        function loadViz(url) {
+            if (viz) {
+                viz.dispose();
+            }
+
+            const options = {
+                hideTabs: true,
+                hideToolbar: true,
+                width: "100%",
+                height: "100%"
+            };
+
+            viz = new tableau.Viz(containerDiv, url, options);
+        }
+
+        function switchDashboard() {
+            currentDashboard = (currentDashboard + 1) % dashboards.length;
+            loadViz(dashboards[currentDashboard]);
+        }
+
+        // Cargar el primer dashboard
+        loadViz(dashboards[currentDashboard]);
+
+        // Cambiar automáticamente cada cierto tiempo
+        setInterval(switchDashboard, durationSeconds * 1000);
+    </script>
+</body>
+</html>
