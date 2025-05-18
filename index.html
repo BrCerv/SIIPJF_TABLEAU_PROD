@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -30,12 +30,13 @@
     <script>
 		
         const dashboards = [
-        "https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_QA_TOP5/Portada",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasTCCA?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasJD?:origin=card_share_link&:embed=n"
         ];
 
         const durationSeconds = 15; // Cambiar cada 15 segundos
         let currentDashboard = 0;
-		var rst = 0;
+		
         const containerDiv = document.getElementById("tableauViz");
         let viz;
         function loadViz(url) {
@@ -57,15 +58,14 @@
 			var fecha = new Date();
 			var hr = fecha.getHours();
 			var min = fecha.getMinutes();
-			if ((hr >= 12 && hr <= 13) || (hr ==15 && min <=29) || (hr ==11 && min >=29)){
-				if (rst == 0){
-					loadViz(dashboards[0]);
-					rst = 1;
-				}
+			if ((hr >= 13 && hr <= 14) || (hr ==15 && min <=29) || (hr ==12 && min >=29)){
+				
+					loadViz("https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/Portada?:origin=card_share_link&:embed=n");
+					
 				
 			}
 			else{
-				rst = 0;
+				
 				currentDashboard = (currentDashboard + 1) % dashboards.length;
 				loadViz(dashboards[currentDashboard]);
 			}
