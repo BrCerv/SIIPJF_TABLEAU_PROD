@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -26,25 +26,22 @@
 
 <body>
     <div id="tableauViz"></div>
-	<div id="portada"></div>
     <script>
 		
         const dashboards = [
-	"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MinistrasSCJN?:origin=card_share_link&:embed=n",
-		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTDJ?:origin=card_share_link&:embed=n",
-		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTEPJF-SS?:origin=card_share_link&:embed=n",
-		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTEPJF-SR?:origin=card_share_link&:embed=n",
-		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasTCCA?:origin=card_share_link&:embed=n",
-		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasJD?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MinistrasSCJN?:origin=card_share_link&:embed=n",
 		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MinistrosSCJN?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTDJ?:origin=card_share_link&:embed=n",
 		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradosTDJ?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTEPJF-SS?:origin=card_share_link&:embed=n",
 		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradosTEPJF-SS?:origin=card_share_link&:embed=n",
+		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradasTEPJF-SR?:origin=card_share_link&:embed=n",
 		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistradosTEPJF-SR?:origin=card_share_link&:embed=n",
 		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasTCCA?:origin=card_share_link&:embed=n",
 		"https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/MagistraturasJD?:origin=card_share_link&:embed=n"
         ];
 
-        const durationSeconds = 15; // Cambiar cada 15 segundos
+        const durationSeconds = 25; 
         let currentDashboard = 0;
 		
         const containerDiv = document.getElementById("tableauViz");
@@ -68,17 +65,10 @@
 			var fecha = new Date();
 			var hr = fecha.getHours();
 			var min = fecha.getMinutes();
-			if ((hr >= 13 && hr <= 14) || (hr ==15 && min <=29) || (hr ==12 && min >=29)){
-				
-					loadViz("https://tableau.ine.mx/t/Analtica/views/PropuestaTSP_17446779083830/Portada?:origin=card_share_link&:embed=n");
-					
-				
-			}
-			else{
-				
-				currentDashboard = (currentDashboard + 1) % dashboards.length;
-				loadViz(dashboards[currentDashboard]);
-			}
+						
+			currentDashboard = (currentDashboard + 1) % dashboards.length;
+			loadViz(dashboards[currentDashboard]);
+			
         }
 		
 		// Cargar el primer dashboard
